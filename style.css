@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 1310px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+body {
+  background-color: #ffd845;
+}
+::-webkit-scrollbar {
+  width: 0.8vw;
+  height: 0.8vw;
+}
+::-webkit-scrollbar-track {
+  background: #ffd845;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d70b7;
+  border-radius: 30px;
+}
+.header {
+  position: relative;
+}
+.heder-img {
+  text-align: center;
+  margin-top: 50px;
+}
+.heder-img2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.header-heart {
+  width: 40px;
+}
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 35px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+  margin-bottom: 100px;
+}
+.btn1 {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  padding: 16px 82px;
+  border-radius: 15px;
+  background: #fff;
+  border: 1px solid black;
+}
+.btn1-text {
+  font-size: 24px;
+  line-height: 28px;
+}
+.inp {
+  width: fit-content;
+  padding: 20px 115px 20px 29px;
+  border-radius: 15px;
+  background: #fff;
+  border: 1px solid black;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* shop */
+.shop {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.first-shop {
+  width: 307px;
+  background-color: #fff;
+  padding: 30px 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.po {
+  margin: 0 auto;
+  width: 157px;
+  padding-bottom: 20px;
+}
+.first-shop-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.heart2 {
+  width: 30px;
+}
+.first-shop-end {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+@media only screen and (max-width: 1300px) {
+  .container {
+    padding: 0 20px;
+  }
+  .shop {
+    justify-content: center;
+    align-items: center;
+  }
+  .btn1-text {
+    font-size: 16px;
+    line-height: none;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .heder-pokemon {
+    width: 300px;
+  }
+  .inp {
+    width: 100%;
+    padding: 20px 1px 20px 29px;
+    border-radius: 15px;
+    background: #fff;
+    border: 1px solid black;
+    /* font-size: 24px;
+    line-height: 28px; */
+  }
+}
