@@ -1,33 +1,23 @@
-function getElement(selector) {
-  return document.querySelector(selector);
+function getElement(selector, parent = document) {
+  return parent.querySelector(selector);
 }
-const elInput = getElement("#input");
-const elButton = getElement("#btn");
-const elCategories = getElement("#categories-list");
-const elCategories2 = getElement("#categories");
-const elHeart = getElement("#heart");
-const elMenu = getElement(".drawer");
-const elClose = getElement("#close");
-const elBody = getElement("body");
 
-const elWrapper = getElement(".shop");
-
-const pokemons = [
+let pokemonCards = [
   {
     id: 1,
     img: "./img/po.png",
     title: "Pokemon",
-    text: ["Pokemon", "All"],
-    kilo: "6.9 kg",
+    categories: ["Pokemon", "All"],
+    weight: "6.9 kg",
     age: 39,
-    isFavorite: true,
+    isFavorite: false,
   },
   {
     id: 2,
     img: "./img/muhammad-ali.png",
     title: "Muhamad Ali",
-    text: ["Boxers", "All"],
-    kilo: "65 kg",
+    categories: ["Boxers", "All"],
+    weight: "65 kg",
     age: 60,
     isFavorite: false,
   },
@@ -35,8 +25,8 @@ const pokemons = [
     id: 3,
     img: "./img/tyson.png",
     title: "Mike Tyson",
-    text: ["Boxers", "All"],
-    kilo: "9 kg",
+    categories: ["Boxers", "All"],
+    weight: "9 kg",
     age: 43,
     isFavorite: false,
   },
@@ -44,8 +34,8 @@ const pokemons = [
     id: 4,
     img: "./img/iphone.png",
     title: "Iphone 15 pro max",
-    text: ["Phones", "All"],
-    kilo: "3.9 kg",
+    categories: ["Phones", "All"],
+    weight: "3.9 kg",
     age: 17,
     isFavorite: false,
   },
@@ -53,17 +43,17 @@ const pokemons = [
     id: 5,
     img: "./img/samsung.png",
     title: "Samsung S24 Ultra",
-    text: ["Phones", "All"],
-    kilo: "6 kg",
+    categories: ["Phones", "All"],
+    weight: "6 kg",
     age: 9,
-    isFavorite: true,
+    isFavorite: false,
   },
   {
     id: 6,
     img: "./img/ro.png",
     title: "Ronaldo",
-    text: ["Footbal", "All"],
-    kilo: "7 kg",
+    categories: ["Footbal", "All"],
+    weight: "7 kg",
     age: 39,
     isFavorite: false,
   },
@@ -71,46 +61,56 @@ const pokemons = [
     id: 7,
     img: "./img/messi.png",
     title: "Messi",
-    text: ["Footbal", "All"],
-    kilo: "10 kg",
+    categories: ["Footbal", "All"],
+    weight: "10 kg",
     age: 37,
-    isFavorite: true,
+    isFavorite: false,
   },
   {
     id: 8,
     img: "./img/sho.png",
     title: "Shomurodov",
-    text: ["Footbal", "All"],
-    kilo: "9.6 kg",
+    categories: ["Footbal", "All"],
+    weight: "9.6 kg",
     age: 34,
     isFavorite: false,
   },
 ];
-// 1-chi
-if ((elCategories.value = "All")) {
-  displayPokemonCard(pokemons);
-}
-// 2-chi
-if ((elCategories2.value = "All")) {
-  displayPokemonCard(pokemons);
-}
 
-const categories = ["All", "Phones", "Boxers", "Pokemon", "Footbal"];
-const secondCategories = ["All", "Aa-Zz", "Age"];
+const categories = ["All", "Footbal", "Phones", "Boxers", "Pokemon"];
+const sectionEl = document.querySelector(".row");
 
-elInput.addEventListener("change", () => {
-  if (elInput.value.length > 0) {
-    const filteredArray = pokemons.filter((item) =>
-      item.title.toLowerCase().includes(elInput.value.toLowerCase())
-    );
-    displayPokemonCard(filteredArray);
-  } else {
-    displayPokemonCard(pokemons);
+const btns = document.querySelectorAll(".btn");
+const template = document.querySelector("template");
+
+const elCategories = getElement("#categories-list");
+const elSearchInput = getElement("#search");
+const elSubmitBtn = getElement("#submit-btn");
+const elOrderSelect = getElement("#order-select");
+const menu = getElement(".offcanvas-body");
+
+elOrderSelect.addEventListener("change", () => {
+  if (elOrderSelect.value === "age") {
+    const sortedArray = pokemonCards.sort((a, b) => a.age - b.age);
+
+    displayPokemonCard(sortedArray);
   }
 });
-// 1-chi SELECT
+
+elSubmitBtn.addEventListener("click", () => {
+  if (elSearchInput.value.length > 0) {
+    const filteredArray = pokemonCards.filter((item) =>
+      item.title.toLowerCase().includes(elSearchInput.value.toLowerCase())
+    );
+
+    displayPokemonCard(filteredArray);
+  } else {
+    displayPokemonCard(pokemonCards);
+  }
+});
+
 window.addEventListener("DOMContentLoaded", function () {
-  displayPokemonCard(pokemons);
+  displayPokemonCard(pokemonCards);
 
   categories.forEach((category) => {
     const newOption = document.createElement("option");
@@ -122,79 +122,106 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 elCategories.addEventListener("change", () => {
-  const filteredObjekt = pokemons.filter((item) =>
-    item.text.includes(elCategories.value)
+  const filteredArray = pokemonCards.filter((item) =>
+    item.categories.includes(elCategories.value)
   );
 
-  displayPokemonCard(filteredObjekt);
+  displayPokemonCard(filteredArray);
 });
-// 2-chi SELECT
-window.addEventListener("DOMContentLoaded", function () {
-  displayPokemonCard(pokemons);
 
-  secondCategories.forEach((category) => {
-    const newOption = document.createElement("option");
-    newOption.value = category;
-    newOption.textContent = category;
+function displayPokemonCard(menuItems) {
+  sectionEl.textContent = null;
 
-    elCategories2.appendChild(newOption);
+  let displayPokemonCard = menuItems.map((item) => {
+    const newElement = template.content.cloneNode(true);
+
+    const topImg = getElement(".card-img-top", newElement);
+    const title = getElement(".card-title", newElement);
+    const weight = getElement(".card-weight", newElement);
+    const age = getElement(".card-age", newElement);
+    const categories = getElement(".categories", newElement);
+    const likeBtn = getElement(".card-like", newElement);
+
+    likeBtn.dataset.id = item.id;
+    if (item.isFavorite) {
+      likeBtn.src = "./images/favorite.png";
+    }
+
+    topImg.src = item.img;
+    title.textContent = item.title;
+    weight.textContent = item.weight;
+    age.textContent = item.age;
+
+    item.categories.map((category, i) => {
+      const newLi = document.createElement("li");
+      const span = document.createElement("span");
+
+      if (item.categories.length - 1 !== i) {
+        span.textContent = ", ";
+      }
+
+      newLi.textContent = category;
+
+      categories.appendChild(newLi);
+      categories.appendChild(span);
+    });
+
+    sectionEl.appendChild(newElement);
   });
-});
-elCategories2.addEventListener("change", () => {
-  const sortAge = pokemons.slice().sort((a, b) => b.age - a.age);
-  console.log(sortAge);
+}
+function PokemonCard(menuItems, where) {
+  where.textContent = null;
 
-  const newArr = pokemons
-    .slice()
-    .sort((a, b) => a.title.localeCompare(b.title));
-  if (elCategories2.value == "Age") {
-    displayPokemonCard(sortAge);
-  } else if (elCategories2.value == "Aa-Zz") {
-    displayPokemonCard(newArr);
-  } else if (elCategories2.value == "All") {
-    displayPokemonCard(pokemons);
+  let displayPokemonCard = menuItems.map((item) => {
+    const newElement = template.content.cloneNode(true);
+
+    const topImg = getElement(".card-img-top", newElement);
+    const title = getElement(".card-title", newElement);
+    const weight = getElement(".card-weight", newElement);
+    const age = getElement(".card-age", newElement);
+    const categories = getElement(".categories", newElement);
+    const likeBtn = getElement(".card-like", newElement);
+
+    likeBtn.dataset.id = item.id;
+    if (item.isFavorite) {
+      likeBtn.src = "./images/favorite.png";
+    }
+
+    topImg.src = item.img;
+    title.textContent = item.title;
+    weight.textContent = item.weight;
+    age.textContent = item.age;
+
+    item.categories.map((category, i) => {
+      const newLi = document.createElement("li");
+      const span = document.createElement("span");
+
+      if (item.categories.length - 1 !== i) {
+        span.textContent = ", ";
+      }
+
+      newLi.textContent = category;
+
+      categories.appendChild(newLi);
+      categories.appendChild(span);
+    });
+
+    where.appendChild(newElement);
+  });
+}
+const arr = [];
+sectionEl.addEventListener("click", (evt) => {
+  if (evt.target.className === "card-like") {
+    const id = Number(evt.target.dataset.id);
+
+    for (let i = 0; i < pokemonCards.length; i++) {
+      if (pokemonCards[i].id === id) {
+        pokemonCards[i].isFavorite = !pokemonCards[i].isFavorite;
+        arr.push(pokemonCards[i]);
+      }
+    }
+    displayPokemonCard(pokemonCards);
+    PokemonCard(arr, menu);
   }
 });
-
-function displayPokemonCard(pokemons, where = elWrapper) {
-  let pokemon = pokemons.map((item) => {
-    return (item.innerHTML = `
-    <div class="first-shop">
-    <img class="po" src=${item.img} alt="Po" />
-    <img class="hr" src="./img/Rectangle 6.png" alt="" />
-    <div class="first-shop-top">
-      <strong class="first-shop-top-s">${item.title}</strong>
-      <img class="favorite2" src="./img/heart(1).svg" alt="heart" />
-    </div>
-    <div class="first-shop-center">
-      <p class="first-shop-center">${item.text}</p>
-    </div>
-    <div class="first-shop-end">
-      <strong class="first-shop-center-s">${item.kilo}</strong>
-      <strong class="first-shop-center-s2">${item.age} age</strong>
-    </div>
-  </div>
-  `);
-  });
-  const elbtn = getElement(".favorite2");
-  console.log(elbtn);
-
-  pokemon = pokemon.join("");
-  where.innerHTML = pokemon;
-}
-displayPokemonCard(pokemons);
-elHeart.addEventListener("click", () => {
-  displayPokemonCard(pokemons /*elMenu*/);
-});
-
-// const likeBtn = getElement(".favorite2");
-// likeBtn.addEventListener("click", () => {
-//   console.log("clicked");
-//   for (let i = 0; i < pokemons.length; i++) {
-//     likeBtn.dataset.id = pokemons[i].id;
-//     console.log(pokemons[i]);
-//     if (pokemons[i].isFavorite) {
-//       likeBtn.src = "./img/favorite.png";
-//     }
-//   }
-// });
+console.log(sectionEl);

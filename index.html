@@ -9,104 +9,80 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
-    <title>Pokemon</title>
-    <link rel="shortcut icon" href="./img/Pokemon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Pokemon card</title>
   </head>
   <body>
-    <header class="header container">
-      <div class="heder-img">
+    <header>
+      <div class="logo-con">
+        <img class="logo" src="./images/pokemon_logo 1.svg" alt="" />
         <img
-          class="heder-pokemon"
-          src="./img/pokemon_logo 1.png"
-          alt="Pokemon"
-        />
-      </div>
-      <div class="heder-img2">
-        <img
-          id="heart"
-          class="header-heart"
           data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight"
-          src="./img/heart(1).svg"
-          alt="Heart"
+          href="#offcanvasExample"
+          role="button"
+          aria-controls="offcanvasExample"
+          class="heart"
+          src="./images/heart.svg"
+          alt=""
         />
-        <div class="main-drawer">
-          <div class="bg-drawer"></div>
-          <div class="drawer">
-            <!-- <img id="close" src="./img/x-lg (1).svg" alt="close-icon" /> -->
-          </div>
-        </div>
       </div>
     </header>
-    <section class="hero container">
-      <div class="hero-first-btn">
-        <select class="btn1" id="categories-list">
-          <!-- <option class="btn1-text">Gross</option>
-          <option class="btn1-text">Gross</option>
-          <option class="btn1-text">Gross</option> -->
+    <div class="container">
+      <div class="nav mt-5 mb-5 justify-content-center gap-3">
+        <select name="Gross" id="categories-list"></select>
+        <input id="search" type="text" placeholder="Search" />
+        <select name="Aa-Zz" id="order-select">
+          <option value="order-by-text">AA-zz</option>
+          <option value="age">Age</option>
         </select>
+        <button id="submit-btn" class="btn btn-light">Button</button>
       </div>
-      <!-- inp -->
-      <div class="hero-inp">
-        <input id="input" class="inp" type="text" placeholder="Search" />
-      </div>
-      <!-- inp tugadi -->
-      <div class="hero-first-btn">
-        <select class="btn1" id="categories">
-          <img src="./img/arrow.svg" alt="Arrow" />
-        </select>
-      </div>
-      <!-- <div class="hero-first-btn">
-        <button id="btn" class="btn1">
-          <p class="btn1-text">Button</p>
-        </button>
-      </div> -->
-    </section>
-    <!-- Java -->
-    <section class="shop container">
-      <!-- <div class="first-shop">
-        <img class="po" src="./img/po.png" alt="Po" />
-        <img class="hr" src="./img/Rectangle 6.png" alt="" />
-        <div class="first-shop-top">
-          <strong class="first-shop-top-s">Pokemons</strong>
-          <img class="heart2" src="./img/heart (1).svg" alt="heart" />
-        </div>
-        <div class="first-shop-center">
-          <p class="first-shop-center">Grass, Poison</p>
-        </div>
-        <div class="first-shop-end">
-          <strong class="first-shop-center-s">6.9 kg</strong>
-          <strong class="first-shop-center-s2">99 age</strong>
-        </div>
-      </div> -->
-    </section>
+
+      <div
+        class="row mb-4 gap-3 align-items-center justify-content-center"
+      ></div>
+    </div>
 
     <div
       class="offcanvas offcanvas-end"
       tabindex="-1"
-      id="offcanvasRight"
-      aria-labelledby="offcanvasRightLabel"
+      id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">
-          Your favorites cards
-        </h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
         <button
           type="button"
-          class="btn-close"
+          class="btn-close text-reset"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         ></button>
       </div>
       <div class="offcanvas-body"></div>
     </div>
+
+    <template>
+      <div class="card" style="width: 17rem">
+        <img src="./images/pokemon.png" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <hr />
+          <h5 class="card-title">Pokemons2</h5>
+          <img class="card-like" src="./images/heart.svg" alt="" />
+          <ul class="categories d-flex list-unstyled"></ul>
+          <div class="d-flex align-items-center gap-3">
+            <h5 class="card-weight">6.9kg</h5>
+            <h5 class="card-age">99 age</h5>
+          </div>
+        </div>
+      </div>
+    </template>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+
     <script src="./main.js"></script>
   </body>
 </html>

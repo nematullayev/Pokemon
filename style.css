@@ -1,160 +1,56 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-.container {
-  max-width: 1310px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
 body {
   background-color: #ffd845;
 }
-::-webkit-scrollbar {
-  width: 0.8vw;
-  height: 0.8vw;
-}
-::-webkit-scrollbar-track {
-  background: #ffd845;
-}
-::-webkit-scrollbar-thumb {
-  background: #2d70b7;
-  border-radius: 30px;
-}
-.header {
+.logo-con {
   position: relative;
+  z-index: 0;
 }
-.heder-img {
-  text-align: center;
-  margin-top: 50px;
-}
-.heder-img2 {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.header-heart {
-  width: 40px;
-}
-.hero {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 35px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 70px;
-  margin-bottom: 100px;
-}
-.btn1 {
-  display: flex;
-  gap: 2px;
-  align-items: center;
-  padding: 16px 82px;
-  border-radius: 15px;
-  background: #fff;
-  border: 1px solid black;
-}
-.btn1-text {
-  font-size: 24px;
-  line-height: 28px;
-}
-#btn {
-  padding: 11px 70px;
-  border-radius: 15px;
-  background: #fff;
-  border: 1px solid black;
-  font-size: 18px;
-  line-height: 24px;
-}
-#btn:active {
-  background-color: #ffffff90;
-}
-.btn1:hover {
-  background-color: #ffffff90;
-}
-.inp {
-  /* width: 300px; */
-  padding: 13px 115px 13px 29px;
-  border-radius: 15px;
-  background: #fff;
-  border: 1px solid black;
-  font-size: 18px;
-  line-height: 24px;
-}
-
-/* shop */
-.shop {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.first-shop {
-  width: 307px;
-  background-color: #fff;
-  padding: 30px 30px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.po {
-  margin: 0 auto;
-  width: 157px;
-  padding-bottom: 20px;
-}
-.first-shop-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.favorite2 {
-  width: 30px;
-}
-.first-shop-end {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-/* menu */
-
-.drawer .first-shop {
+header .logo {
+  position: relative;
+  z-index: -1;
+  display: block;
   margin: auto;
   margin-top: 50px;
+  max-width: 90%;
 }
-@media only screen and (max-width: 1300px) {
-  .container {
-    padding: 0 20px;
-  }
-  .shop {
-    justify-content: center;
-    align-items: center;
-  }
-  .btn1-text {
-    font-size: 16px;
-    line-height: none;
-  }
-  .drawer {
-    width: 50%;
-  }
+.logo-con .heart {
+  max-width: 100%;
+  position: absolute;
+  top: -40px;
+  right: 40px;
 }
-@media only screen and (max-width: 640px) {
-  .heder-pokemon {
-    width: 300px;
-  }
-  .inp {
-    width: 100%;
-    /* padding: 20px 1px 20px 29px; */
-    border-radius: 15px;
-    background: #fff;
-    border: 1px solid black;
-    /* font-size: 24px;
-    line-height: 28px; */
-  }
-  .drawer {
-    width: 80%;
-  }
+.nav input,
+.nav select,
+.nav button {
+  width: 260px;
+  border: 2px solid #000;
+  outline: none;
+  border-radius: 15px;
+  text-align: center;
+}
+.nav select {
+  padding-right: 40px;
+}
+.card-img-top {
+  width: 157px !important;
+  display: block;
+  margin: auto;
+}
+.card {
+  border-radius: 20px !important;
+  position: relative;
+}
+.card .card-like {
+  position: absolute;
+  top: 63%;
+  right: 20px;
+  width: 30px;
+}
+.offcanvas .card {
+  margin: auto;
+  margin-top: 20px;
+}
+.card .card-img-top {
+  width: 190px !important;
+  height: 190px !important;
 }
