@@ -14,60 +14,76 @@ const elWrapper = getElement(".shop");
 
 const pokemons = [
   {
+    id: 1,
     img: "./img/po.png",
     title: "Pokemon",
     text: ["Pokemon", "All"],
     kilo: "6.9 kg",
-    age: "39 age",
+    age: 39,
+    isFavorite: true,
   },
   {
+    id: 2,
     img: "./img/muhammad-ali.png",
     title: "Muhamad Ali",
-    text: ["Boxer", "All"],
+    text: ["Boxers", "All"],
     kilo: "65 kg",
-    age: "60 age",
+    age: 60,
+    isFavorite: false,
   },
   {
+    id: 3,
     img: "./img/tyson.png",
     title: "Mike Tyson",
-    text: ["Boxer", "All"],
+    text: ["Boxers", "All"],
     kilo: "9 kg",
-    age: "43 age",
+    age: 43,
+    isFavorite: false,
   },
   {
+    id: 4,
     img: "./img/iphone.png",
     title: "Iphone 15 pro max",
     text: ["Phones", "All"],
     kilo: "3.9 kg",
-    age: "17 age",
+    age: 17,
+    isFavorite: false,
   },
   {
+    id: 5,
     img: "./img/samsung.png",
-    title: "Samsunng S24 Ultra",
+    title: "Samsung S24 Ultra",
     text: ["Phones", "All"],
     kilo: "6 kg",
-    age: "9 age",
+    age: 9,
+    isFavorite: true,
   },
   {
+    id: 6,
     img: "./img/ro.png",
     title: "Ronaldo",
-    text: ["Champion", "Footbal", "All"],
+    text: ["Footbal", "All"],
     kilo: "7 kg",
-    age: "39 age",
+    age: 39,
+    isFavorite: false,
   },
   {
+    id: 7,
     img: "./img/messi.png",
     title: "Messi",
-    text: ["Champion", "Footbal", "All"],
+    text: ["Footbal", "All"],
     kilo: "10 kg",
-    age: "37 age",
+    age: 37,
+    isFavorite: true,
   },
   {
+    id: 8,
     img: "./img/sho.png",
     title: "Shomurodov",
-    text: ["Footbal", "Champion", "All"],
+    text: ["Footbal", "All"],
     kilo: "9.6 kg",
-    age: " 34 age",
+    age: 34,
+    isFavorite: false,
   },
 ];
 // 1-chi
@@ -79,8 +95,8 @@ if ((elCategories2.value = "All")) {
   displayPokemonCard(pokemons);
 }
 
-const categories = ["All", "Phones", "Boxer", "Pokemon", "Footbal"];
-const secondCategories = ["All", "Az-Zz", "Age", "KG"];
+const categories = ["All", "Phones", "Boxers", "Pokemon", "Footbal"];
+const secondCategories = ["All", "Aa-Zz", "Age"];
 
 elInput.addEventListener("change", () => {
   if (elInput.value.length > 0) {
@@ -124,8 +140,23 @@ window.addEventListener("DOMContentLoaded", function () {
     elCategories2.appendChild(newOption);
   });
 });
+elCategories2.addEventListener("change", () => {
+  const sortAge = pokemons.slice().sort((a, b) => b.age - a.age);
+  console.log(sortAge);
 
-function displayPokemonCard(pokemons) {
+  const newArr = pokemons
+    .slice()
+    .sort((a, b) => a.title.localeCompare(b.title));
+  if (elCategories2.value == "Age") {
+    displayPokemonCard(sortAge);
+  } else if (elCategories2.value == "Aa-Zz") {
+    displayPokemonCard(newArr);
+  } else if (elCategories2.value == "All") {
+    displayPokemonCard(pokemons);
+  }
+});
+
+function displayPokemonCard(pokemons, where = elWrapper) {
   let pokemon = pokemons.map((item) => {
     return (item.innerHTML = `
     <div class="first-shop">
@@ -133,28 +164,37 @@ function displayPokemonCard(pokemons) {
     <img class="hr" src="./img/Rectangle 6.png" alt="" />
     <div class="first-shop-top">
       <strong class="first-shop-top-s">${item.title}</strong>
-      <img class="heart2" src="./img/heart (1).svg" alt="heart" />
+      <img class="favorite2" src="./img/heart(1).svg" alt="heart" />
     </div>
     <div class="first-shop-center">
       <p class="first-shop-center">${item.text}</p>
     </div>
     <div class="first-shop-end">
       <strong class="first-shop-center-s">${item.kilo}</strong>
-      <strong class="first-shop-center-s2">${item.age}</strong>
+      <strong class="first-shop-center-s2">${item.age} age</strong>
     </div>
   </div>
   `);
   });
+  const elbtn = getElement(".favorite2");
+  console.log(elbtn);
+
   pokemon = pokemon.join("");
-  elWrapper.innerHTML = pokemon;
-  console.log(pokemons);
+  where.innerHTML = pokemon;
 }
 displayPokemonCard(pokemons);
 elHeart.addEventListener("click", () => {
-  console.log("clicked");
-  elMenu.style.display = "block";
+  displayPokemonCard(pokemons /*elMenu*/);
 });
-elClose.addEventListener("click", () => {
-  elMenu.style.display = "none";
-  elBody.style.backgroundColor = "#ffd845";
-});
+
+// const likeBtn = getElement(".favorite2");
+// likeBtn.addEventListener("click", () => {
+//   console.log("clicked");
+//   for (let i = 0; i < pokemons.length; i++) {
+//     likeBtn.dataset.id = pokemons[i].id;
+//     console.log(pokemons[i]);
+//     if (pokemons[i].isFavorite) {
+//       likeBtn.src = "./img/favorite.png";
+//     }
+//   }
+// });
