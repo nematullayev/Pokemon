@@ -10,7 +10,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./style.css" />
-    <title>Pokemon card</title>
+    <title>Pokemon</title>
+    <link rel="shortcut icon" href="./img/Pokemon.png" type="image/x-icon" />
   </head>
   <body>
     <header>
@@ -32,10 +33,10 @@
         <select name="Gross" id="categories-list"></select>
         <input id="search" type="text" placeholder="Search" />
         <select name="Aa-Zz" id="order-select">
-          <option value="order-by-text">AA-zz</option>
+          <option value="All">All</option>
+          <option value="Aa-Zz">Aa-Zz</option>
           <option value="age">Age</option>
         </select>
-        <button id="submit-btn" class="btn btn-light">Button</button>
       </div>
 
       <div
@@ -49,8 +50,10 @@
       id="offcanvasExample"
       aria-labelledby="offcanvasExampleLabel"
     >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+      <div class="offcanvas-header bg-danger text-light">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+          Your favorite Cards
+        </h5>
         <button
           type="button"
           class="btn-close text-reset"
@@ -58,11 +61,11 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="offcanvas-body"></div>
+      <div class="offcanvas-body bg-warning"></div>
     </div>
 
     <template>
-      <div class="card" style="width: 17rem">
+      <div class="card" style="width: 17rem; padding-top: 20px">
         <img src="./images/pokemon.png" class="card-img-top" alt="..." />
         <div class="card-body">
           <hr />

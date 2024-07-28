@@ -90,14 +90,22 @@ const elOrderSelect = getElement("#order-select");
 const menu = getElement(".offcanvas-body");
 
 elOrderSelect.addEventListener("change", () => {
+  if (elOrderSelect.value === "All") {
+    displayPokemonCard(pokemonCards);
+  }
   if (elOrderSelect.value === "age") {
-    const sortedArray = pokemonCards.sort((a, b) => a.age - b.age);
+    const sortedArray = pokemonCards.slice().sort((a, b) => b.age - a.age);
 
     displayPokemonCard(sortedArray);
+  } else if (elOrderSelect.value === "Aa-Zz") {
+    const newArr = pokemonCards
+      .slice()
+      .sort((a, b) => a.title.localeCompare(b.title));
+    displayPokemonCard(newArr);
   }
 });
 
-elSubmitBtn.addEventListener("click", () => {
+elSearchInput.addEventListener("change", () => {
   if (elSearchInput.value.length > 0) {
     const filteredArray = pokemonCards.filter((item) =>
       item.title.toLowerCase().includes(elSearchInput.value.toLowerCase())

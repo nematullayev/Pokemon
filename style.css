@@ -20,8 +20,8 @@ header .logo {
   right: 40px;
 }
 .nav input,
-.nav select,
-.nav button {
+.nav select {
+  padding: 10px 0;
   width: 260px;
   border: 2px solid #000;
   outline: none;
