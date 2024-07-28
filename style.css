@@ -13,6 +13,17 @@ header .logo {
   margin-top: 50px;
   max-width: 90%;
 }
+::-webkit-scrollbar {
+  width: 0.8vw;
+  height: 0.8vw;
+}
+::-webkit-scrollbar-track {
+  background: #ffd845;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d70b7;
+  border-radius: 30px;
+}
 .logo-con .heart {
   max-width: 100%;
   position: absolute;
